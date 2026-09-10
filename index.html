@@ -391,6 +391,7 @@ function update(dt) {
     if (target) { b.alive = false; destroyTank(target, b.owner); }
   }
   bullets = bullets.filter(b => b.alive);
+  enemies = enemies.filter(e => e.alive);  // 移除已销毁的敌人,否则出生逻辑会卡在 4 个
 
   // 更新粒子
   for (const p of particles) { p.x += p.vx; p.y += p.vy; p.life--; }
