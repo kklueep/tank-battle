@@ -499,13 +499,14 @@ function applyPowerup(pu) {
 function nextLevel() {
   level++;
   resetLevel();
+  state = 'menu';   // 暂停游戏循环,等过渡遮罩消失
   showOverlay('第 '+level+' 关', '准备战斗！', false);
   setTimeout(()=>{ if(state==='menu'){ state='playing'; hideOverlay(); } }, 1200);
 }
 
 function resetLevel() {
   map = buildMap(STAGE);
-  player = makeTank(7*TILE+3, 14*TILE+3, DIR.UP, 'player');
+  player = makeTank(7*TILE+3, 12*TILE+3, DIR.UP, 'player');
   player.shield = true; setTimeout(()=>player.shield=false, 3000);
   enemies = [];
   bullets = [];
@@ -517,10 +518,10 @@ function resetLevel() {
 
 function resetGame() {
   score = 0; lives = 3; level = 1;
-  player = makeTank(7*TILE+3, 14*TILE+3, DIR.UP, 'player');
+  player = makeTank(7*TILE+3, 12*TILE+3, DIR.UP, 'player');
   player.shield = true; setTimeout(()=>player.shield=false, 3000);
   resetLevel();
-  player = makeTank(7*TILE+3, 14*TILE+3, DIR.UP, 'player');
+  player = makeTank(7*TILE+3, 12*TILE+3, DIR.UP, 'player');
   player.shield = true; setTimeout(()=>player.shield=false, 3000);
 }
 
@@ -765,7 +766,7 @@ document.getElementById('startBtn').addEventListener('click', () => {
 
 /* ================= 启动 ================= */
 map = buildMap(STAGE);
-player = makeTank(7*TILE+3, 14*TILE+3, DIR.UP, 'player');
+player = makeTank(7*TILE+3, 12*TILE+3, DIR.UP, 'player');
 player.shield = true; setTimeout(()=>player.shield=false, 3000);
 spawnQueue = TOTAL_ENEMIES;
 updateHUD();
